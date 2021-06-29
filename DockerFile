@@ -1,0 +1,20 @@
+FROM php:7-apache
+WORKDIR /application
+
+ENV ACCEPT_EULA=Y
+
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+
+RUN install-php-extensions gd xdebug
+RUN install-php-extensions odbc
+RUN install-php-extensions pdo_dblib
+RUN install-php-extensions pdo_odbc
+RUN install-php-extensions pdo_oci
+RUN install-php-extensions pdo_sqlsrv
+RUN install-php-extensions sqlsrv
+RUN install-php-extensions calendar
+RUN install-php-extensions sysvmsg
+RUN install-php-extensions sysvsem
+RUN install-php-extensions sysvshm
+RUN install-php-extensions xmlrpc
+RUN a2enmod rewrite
